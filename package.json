@@ -1,0 +1,17 @@
+{
+  "name": "demo-config-provider",
+  "version": "1.0.0",
+  "description": "The Control Panel: two Clever Cloud apps share one Configuration provider, drawn as a 1970s console.",
+  "license": "MIT",
+  "type": "module",
+  "main": "server.js",
+  "engines": {
+    "node": "24"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --env-file=.env.example server.js",
+    "test": "node --test",
+    "trace": "node scripts/trace-wiring.mjs"
+  }
+}
