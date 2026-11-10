@@ -3,7 +3,7 @@
 > Flip it once. Both consoles follow.
 > Two Clever Cloud apps run the same code and read the same **Configuration provider** add-on. Each one draws its environment as a 1970s console in Bakelite and brushed aluminium: a toggle switch, a rotary selector, a VU meter and an annunciator lamp, with a Nixie-tube counter for the time on the current configuration. Change one value in the provider: Clever Cloud restarts both apps by itself, and both consoles move together. A patch bay shows which variable comes from the provider and which from the app itself.
 
-![Both consoles run locally, the provider's variables set by hand: both processes restart with FEATURE_NIGHT_MODE=true, Console A flips to night lighting, the fleet strip shows the night lamp lit on Console A and Console B, then both return to day mode](docs/tour.gif)
+![Both consoles live on Clever Cloud: FEATURE_NIGHT_MODE is set to true once in the Configuration provider, the wait for the restart is cut, Console A flips to night lighting and its counter restarts at zero, then the fleet strip shows the night lamp lit on Console A and Console B](docs/tour.gif)
 
 ![Console A, day mode](docs/console-a-day.png)
 
