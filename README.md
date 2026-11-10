@@ -130,7 +130,7 @@ Security headers on every response: a strict CSP (no inline script, `connect-src
 ```bash
 npm run dev                                                          # Console A on http://localhost:8460
 PORT=8466 STATION_NAME="Console B" node --env-file=.env.example server.js   # Console B on :8466
-npm test                                                             # node --test, 10 tests
+npm test                                                             # node --test, 11 tests
 ```
 
 Node.js 24 (pinned in `package.json`), no dependencies.

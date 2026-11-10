@@ -51,6 +51,18 @@ test('GET / renders the console with escaped values and a strict CSP', async () 
   assert.match(csp, /connect-src 'self' https:\/\/a\.example\.com https:\/\/b\.example\.com/);
 });
 
+test('the header pill says live only when APP_ID is set', async () => {
+  const local = await (await fetch(`${base}/`)).text();
+  assert.ok(local.includes('Local · not on Clever Cloud'));
+  assert.ok(!local.includes('Live on Clever Cloud'));
+  const app = createApp({ ...ENV, APP_ID: 'app_test' });
+  try {
+    const live = await (await fetch(`${await listen(app)}/`)).text();
+    assert.ok(live.includes('Live on Clever Cloud'));
+    assert.ok(!live.includes('Local · not on Clever Cloud'));
+  } finally { app.close(); }
+});
+
 test('static files, 404 and 405', async () => {
   assert.equal((await fetch(`${base}/app.js`)).status, 200);
   assert.equal((await fetch(`${base}/cc-brand.css`)).status, 200);

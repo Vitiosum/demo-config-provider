@@ -9,6 +9,10 @@ const PUBLIC = join(import.meta.dirname, 'public');
 const TYPES = { '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png' };
 const STATIC = new Set(['/cc-brand.css', '/panel.css', '/app.js']);
 
+// Header pill: "Live" only when Clever Cloud injected APP_ID.
+const LIVE_PILL = '<span class="cc-pill cc-pill--live"><span class="cc-dot"></span>Live on Clever Cloud</span>';
+const LOCAL_PILL = '<span class="cc-pill cc-pill--muted"><span class="cc-dot cc-dot--muted"></span>Local · not on Clever Cloud</span>';
+
 const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
 // Environment variables are read once, at boot: that is when Clever Cloud hands them over.
@@ -47,6 +51,7 @@ export function createApp(env = process.env, bootedAt = new Date()) {
       .replaceAll('{{APP}}', escapeHtml(panel.station.app))
       .replaceAll('{{ACCENT}}', accent)
       .replaceAll('{{NIGHT}}', night)
+      .replace('{{LIVE_PILL}}', panel.station.appId ? LIVE_PILL : LOCAL_PILL)
       .replace('{{BOOT}}', JSON.stringify({ ...panel, now: new Date().toISOString() }).replaceAll('<', '\\u003c'));
   }
 
